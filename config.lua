@@ -20,9 +20,9 @@ require("new-tab-button").setup()
 require("right-status").setup()
 
 return {
-    color_scheme = "Catppuccin Mocha",
-
     default_prog = { "pwsh" },
+
+    color_scheme = "Catppuccin Mocha",
 
     launch_menu = {
         { label = "PowerShell Core", args = { "pwsh" } },
@@ -46,6 +46,8 @@ return {
     line_height = 1.0,
 
     keys = mykeys,
+
+    tab_max_width = 100,
 
     window_decorations = "INTEGRATED_BUTTONS|RESIZE",
     window_background_opacity = 1.0,
