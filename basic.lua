@@ -12,7 +12,7 @@ return {
     },
 
     font = wezterm.font({
-        family = "MesloLGL Nerd Font",
+        family = "MesloLGM Nerd Font",
         weight = "Regular",
         harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
     }),
@@ -26,7 +26,7 @@ return {
     font_size = 12,
     line_height = 1.0,
 
-    tab_max_width = 16,
+    tab_max_width = 24,
 
     window_decorations = "INTEGRATED_BUTTONS|RESIZE",
     window_background_opacity = 1.0,
