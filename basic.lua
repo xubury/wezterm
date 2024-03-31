@@ -1,4 +1,10 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function()
+    local tab, pane, window = mux.spawn_window({})
+    window:gui_window():maximize()
+end)
 
 return {
     default_prog = { "pwsh" },
@@ -11,25 +17,10 @@ return {
         { label = "Command Prompt", args = { "cmd" } },
     },
 
-    font = wezterm.font({
-        family = "MesloLGM Nerd Font",
-        weight = "Regular",
-        harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
-    }),
-
     animation_fps = 60,
     max_fps = 60,
     front_end = "WebGpu",
     webgpu_power_preference = "HighPerformance",
-
-    freetype_load_flags = "NO_HINTING|NO_AUTOHINT",
-    font_size = 12,
-    line_height = 1.0,
-
-    tab_max_width = 24,
-
-    window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-    window_background_opacity = 1.0,
 
     default_cursor_style = "BlinkingBlock",
     cursor_blink_rate = 900,
@@ -37,8 +28,9 @@ return {
     cursor_blink_ease_out = "Linear",
 
     bold_brightens_ansi_colors = true,
-    use_resize_increments = false,
 
+    window_decorations = "INTEGRATED_BUTTONS|RESIZE",
+    window_background_opacity = 1.0,
     window_padding = {
         left = 0,
         right = 0,
@@ -50,6 +42,7 @@ return {
         active_titlebar_bg = "#090909",
     },
 
+    tab_max_width = 24,
     tab_bar_at_bottom = false,
     use_fancy_tab_bar = false,
     show_tab_index_in_tab_bar = false,

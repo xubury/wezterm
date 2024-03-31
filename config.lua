@@ -30,4 +30,4 @@ require("tab-title").setup()
 require("new-tab-button").setup()
 require("right-status").setup()
 
-return Config:init():append(require("basic")):append(require("keymap")).options
+return Config:init():append(require("basic")):append(require("font")):append(require("keymap")).options

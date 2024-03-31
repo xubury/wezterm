@@ -15,5 +15,5 @@ table.insert(keys, { key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDom
 table.insert(keys, { key = "w", mods = "CTRL | SHIFT", action = act.CloseCurrentTab({ confirm = true }) })
 
 return {
-    keys = keys
+    keys = keys,
 }
