@@ -49,7 +49,7 @@ local _set_title = function(process_name, base_title, max_width, inset)
     title = base_title
     if title:len() > max_width - inset then
         local diff = title:len() - max_width + inset
-        title = wezterm.truncate_right(title, title:len() - diff)
+        title = wezterm.truncate_left(title, title:len() - diff)
     end
 
     return title
