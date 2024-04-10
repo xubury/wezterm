@@ -2,9 +2,9 @@ local wezterm = require("wezterm")
 
 return {
     font = wezterm.font({
-        family = "MesloLGM Nerd Font",
+        family = "JetBrains Mono",
         weight = "Regular",
-        harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+        harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     }),
     freetype_load_flags = "NO_HINTING|NO_AUTOHINT",
     font_size = 12,
