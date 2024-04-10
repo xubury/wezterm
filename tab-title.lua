@@ -37,29 +37,22 @@ local _set_process_name = function(s)
 end
 
 local _set_title = function(process_name, base_title, max_width, inset)
-    local title
     inset = inset or 6
+    if inset > max_width then
+        inset = 0
+    end
+    local title = base_title
 
-    if process_name:len() > 0 then
-        title = process_name .. " ~ " .. base_title
-    else
-        title = base_title
+    local homeDir = os.getenv("UserProfile")
+    if homeDir then
+        title = string.gsub(title, homeDir, "~")
     end
 
-    title = base_title
     if title:len() > max_width - inset then
-        local diff = title:len() - max_width + inset
-        title = wezterm.truncate_left(title, title:len() - diff)
+        title = wezterm.truncate_left(title, max_width - inset)
     end
 
     return title
-end
-
-local _check_if_admin = function(p)
-    if p:match("^Administrator: ") then
-        return true
-    end
-    return false
 end
 
 ---@param fg string
@@ -74,14 +67,15 @@ local _push = function(bg, fg, attribute, text)
 end
 
 M.setup = function()
+    local real_max_width = 0
     wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, hover, max_width)
         __cells__ = {}
 
         local bg
         local fg
         local process_name = _set_process_name(tab.active_pane.foreground_process_name)
-        local is_admin = _check_if_admin(tab.active_pane.title)
-        local title = _set_title(process_name, tab.active_pane.title, max_width, (is_admin and 8))
+        real_max_width = math.max(real_max_width, max_width)
+        local title = _set_title(process_name, tab.active_pane.title, real_max_width, 8)
 
         if tab.is_active then
             bg = colors.is_active.bg
@@ -96,11 +90,6 @@ M.setup = function()
 
         -- Left semi-circle
         _push(fg, bg, { Intensity = "Bold" }, GLYPH_SEMI_CIRCLE_LEFT)
-
-        -- Admin Icon
-        if is_admin then
-            _push(bg, fg, { Intensity = "Bold" }, " " .. GLYPH_ADMIN)
-        end
 
         -- Title
         _push(bg, fg, { Intensity = "Bold" }, " " .. title)

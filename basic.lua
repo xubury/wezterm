@@ -42,7 +42,7 @@ return {
         active_titlebar_bg = "#090909",
     },
 
-    tab_max_width = 24,
+    tab_max_width = 32,
     tab_bar_at_bottom = false,
     use_fancy_tab_bar = false,
     show_tab_index_in_tab_bar = false,
